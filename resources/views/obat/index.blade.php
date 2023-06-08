@@ -39,7 +39,7 @@
                                         <th>Nama Obat</th>
                                         <th>Jumlah</th>
                                         <th>Satuan</th>
-                                        <th>Dosis</th>
+                                        <th>Kandungan Obat</th>
                                         <th>Expired</th>
                                         <th class="text-center">Action</th>
                                     </tr>

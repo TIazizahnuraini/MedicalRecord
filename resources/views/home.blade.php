@@ -84,12 +84,12 @@
 
             {{-- pasien --}}
             @if (auth()->user()->role == "pasien")
-            <div class="col-md-6 mb-3">
+            <div class="col-md-4 mb-3">
                 <a href="pasien" class="text-white" style="text-decoration: none;">
                     <div class="card mb-3 widget-content bg-arielle-smile">
                         <div class="widget-content-wrapper text-white">
                             <div class="widget-content-left">
-                                <div class="widget-heading">Data Pasien</div>
+                                <div class="widget-heading">Edit Data Pasien</div>
                                 <div class="widget-subheading">lihat detail <i class="fas fa-arrow-right"></i></div>
                             </div>
                             <div class="widget-content-right">
@@ -104,9 +104,9 @@
             @endif
 
             @if (auth()->user()->role == "pasien")
-            <div class="col-md-6 mb-3">
+            <div class="col-md-4 mb-3">
                 <a href="?page=supplier" class="text-white" style="text-decoration: none;">
-                    <div class="card mb-3 widget-content bg-ripe-malin">
+                    <div class="card mb-3 widget-content bg-grow-early">
                         <div class="widget-content-wrapper text-white">
                             <div class="widget-content-left">
                                 <div class="widget-heading">Daftar Antrian</div>
@@ -123,10 +123,52 @@
             </div>
             @endif
 
+            @if (auth()->user()->role == "pasien")
+            <div class="col-md-4 mb-3">
+                <a href="?page=supplier" class="text-white" style="text-decoration: none;">
+                    <div class="card mb-3 widget-content bg-ripe-malin">
+                        <div class="widget-content-wrapper text-white">
+                            <div class="widget-content-left">
+                                <div class="widget-heading">Laporan Data Rekam Medis</div>
+                                <div class="widget-subheading">lihat detail <i class="fas fa-arrow-right"></i></div>
+                            </div>
+                            <div class="widget-content-right">
+                                <div class="widget-numbers text-white">
+                                    <span class="pe-7s-folder"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            @endif
+            
+
             {{-- KpKlinik --}}
             @if (auth()->user()->role == "kepala_klinik")
-            <div class="col-md-6 mb-3">
+            <div class="col-md-3 mb-3">
                 <a href="?page=supplier" class="text-white" style="text-decoration: none;">
+                    <div class="card mb-3 widget-content bg-arielle-smile">
+                        <div class="widget-content-wrapper text-white">
+                            <div class="widget-content-left">
+                                <div class="widget-heading">Laporan Data Rekam Medis</div>
+                                <div class="widget-subheading">lihat detail <i class="fas fa-arrow-right"></i></div>
+                            </div>
+                            <div class="widget-content-right">
+                                <div class="widget-numbers text-white">
+                                    <span class="pe-7s-folder"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            @endif
+
+            @if (auth()->user()->role == "kepala_klinik")
+            <div class="col-md-3 mb-3">
+                <a href="?page=supplier" class="text-white" style="text-decoration: none;">
+                    {{-- <div class="card mb-3 widget-content bg-ripe-malin"> --}}
                     <div class="card mb-3 widget-content bg-arielle-smile">
                         <div class="widget-content-wrapper text-white">
                             <div class="widget-content-left">
@@ -145,12 +187,32 @@
             @endif
 
             @if (auth()->user()->role == "kepala_klinik")
-            <div class="col-md-6 mb-3">
+            <div class="col-md-3 mb-3">
                 <a href="?page=supplier" class="text-white" style="text-decoration: none;">
-                    <div class="card mb-3 widget-content bg-ripe-malin">
+                    <div class="card mb-3 widget-content bg-arielle-smile">
                         <div class="widget-content-wrapper text-white">
                             <div class="widget-content-left">
-                                <div class="widget-heading">Laporan Data Rekam Medis</div>
+                                <div class="widget-heading">Laporan Data Dokter</div>
+                                <div class="widget-subheading">lihat detail <i class="fas fa-arrow-right"></i></div>
+                            </div>
+                            <div class="widget-content-right">
+                                <div class="widget-numbers text-white">
+                                    <span class="pe-7s-folder"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            @endif
+
+            @if (auth()->user()->role == "kepala_klinik")
+            <div class="col-md-3 mb-3">
+                <a href="?page=supplier" class="text-white" style="text-decoration: none;">
+                    <div class="card mb-3 widget-content bg-arielle-smile ">
+                        <div class="widget-content-wrapper text-white">
+                            <div class="widget-content-left">
+                                <div class="widget-heading">Laporan Obat</div>
                                 <div class="widget-subheading">lihat detail <i class="fas fa-arrow-right"></i></div>
                             </div>
                             <div class="widget-content-right">
