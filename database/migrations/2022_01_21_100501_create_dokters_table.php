@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use App\Models\Dokter;
 
 class CreateDoktersTable extends Migration
 {
@@ -26,6 +27,19 @@ class CreateDoktersTable extends Migration
             $table->string('no_hp', 15);
             $table->timestamps();
         });
+
+        Dokter::create([
+            'nama_dokter' => 'Anang Gunawan, TS',
+            'jenis_kelamin' => 'Laki-laki',
+            'spesialis' => 'Poli Umum',
+            'tempat_lahir' => 'Mojokerto',
+            'tgl_lahir' => '2023-06-07',
+            'alamat' => 'Mojokerto',
+            'nik' => '979729816708',
+            'sip' => '893724920',
+            'no_hp' => '085748110282'
+            
+        ]);
     }
 
     /**

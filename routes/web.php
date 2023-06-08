@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\{DiagnosaController, DokterController, HomeController, KunjunganController, ObatController, PasienController, PoliController, AntrianController, LaporanmedisController, UserController};
+use App\Http\Controllers\{DiagnosaController, DokterController, HomeController, KunjunganController, ObatController, PasienController, PoliController, AntrianController, LaporanmedisController, UserController, PeriksaController};
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -117,6 +117,21 @@ Route::group(['middleware' => ['auth']], function () {
     Route::prefix('user')->middleware(['checkRole:admin'])->group(function(){
         Route::get('/', [UserController::class, 'index'])->name('user');
         Route::delete('/{user}/destroy', [UserController::class, 'destroy'])->name('user.destroy');
+
+    });
+
+    // periksa
+    Route::prefix('periksa')->middleware(['checkRole:admin'])->group(function(){
+        Route::get('/', [PeriksaController::class, 'index'])->name('periksa');
+        Route::get('/{poli}/{antrian}', [PeriksaController::class, 'index'])->name('periksa.pasien');
+        Route::get('/create/step1', [PeriksaController::class, 'createStep1'])->name('periksa.create.step1');
+        Route::post('/step1', [PeriksaController::class, 'step1'])->name('periksa.step1');
+
+        Route::get('/create/step2', [PeriksaController::class, 'createStep2'])->name('periksa.create.step2');
+        Route::post('/step2', [PeriksaController::class, 'step2'])->name('periksa.step2');
+
+        Route::get('/create/step3', [PeriksaController::class, 'createStep3'])->name('periksa.create.step3');
+        Route::post('/step3', [PeriksaController::class, 'step3'])->name('periksa.step3');
 
     });
 

@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use App\Models\Pasien;
 
 class CreatePasiensTable extends Migration
 {
@@ -28,6 +29,20 @@ class CreatePasiensTable extends Migration
             $table->enum('pekerjaan', ['Belum/Tidak Bekerja', 'Mengurus Rumah Tangga', 'Pelajar/Mahasiswa', 'TNI/POLRI', 'Wiraswasta', 'Pegawai Swasta', 'Lainnya']);
             $table->timestamps();
         });
+
+        Pasien::create([
+            'nama_pasien' => 'Susi',
+            'tempat_lahir' => 'Mojokerto',
+            'tgl_lahir' => '2023-06-07',
+            'jenis_kelamnin' => 'perempuan',
+            'alamat' => 'Mojokerto',
+            'jenis_registrasi' => 'BPJS',
+            'no_bpjs' => '874826418301',
+            'no_hp' => '0856768000000',
+            'tgl_registrasi' => '2023-06-03',
+            'agama' => 'Islam',
+            'pekerjaan' => 'Pelajar/Mahasiswa'
+        ]);
     }
 
     /**

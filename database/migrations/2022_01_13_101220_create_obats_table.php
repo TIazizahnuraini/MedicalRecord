@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use App\Models\Obat;
 
 class CreateObatsTable extends Migration
 {
@@ -22,6 +23,16 @@ class CreateObatsTable extends Migration
             $table->date('expired');
             $table->timestamps();
         });
+
+        Obat::create([
+            'nama_obat' => 'Paracetamol',
+            'jumlah' => '34',
+            'satuan' => 'tablet',
+            'dosis' => '50mg',
+            'expired' => '2024-07-10',
+
+
+        ]);
     }
 
     /**

@@ -9,7 +9,7 @@ class Antrian extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['poli_id', 'pasien_id', 'dokter_id', 'status', 'tanggal'];
+    protected $fillable = ['poli_id', 'pasien_id', 'dokter_id', 'status', 'tanggal', 'nomor_antrian'];
 
     public function poli()
     {

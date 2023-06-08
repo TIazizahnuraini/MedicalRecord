@@ -14,7 +14,7 @@ class PoliSeeder extends Seeder
      */
     public function run()
     {
-        $polis = collect(["Umum", "Gigi", "KB dan KIA", "Lansia", "MTBS"]);
+        $polis = collect(["Poli Umum", "Poli Gigi"]);
 
         $poli = $polis->each(function ($poli) {
             Poli::create([

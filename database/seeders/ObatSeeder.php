@@ -15,12 +15,12 @@ class ObatSeeder extends Seeder
     public function run()
     {
         $obats = collect([
-            ["Actifed", 30, "Botol", "60mg"],
-            ["Allergen", 40, "Tablet", "120mg"],
-            ["Paracetamol", 35, "Tablet", "500mg"],
-            ["Cataflam", 40, "Tablet", "50mg"],
-            ["Sanmol", 25, "Botol", "250mg"],
-            ["Pumpitor", 29, "Kapsul", "20mg"]
+            ["Actifed", 30, "Botol", "60mg", "2024-09-28"],
+            ["Allergen", 40, "Tablet", "120mg", "2025-09-01"],
+            ["Paracetamol", 35, "Tablet", "500mg", "2024-01-22"],
+            ["Cataflam", 40, "Tablet", "50mg", "2025-22-01"],
+            ["Sanmol", 25, "Botol", "250mg", "2025-09-08"],
+            ["Pumpitor", 29, "Kapsul", "20mg", "2024-09-28"]
         ]);
 
         $obat = $obats->eachSpread(function ($nama_obat, $jumlah, $satuan, $dosis) {
@@ -28,6 +28,7 @@ class ObatSeeder extends Seeder
                 'nama_obat' => $nama_obat,
                 'jumlah' => $jumlah,
                 'satuan' => $satuan,
+                'expired' => $expired,
                 'dosis' => $dosis
             ]);
         });

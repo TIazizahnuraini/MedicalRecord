@@ -15,4 +15,9 @@ class Poli extends Model
     {
         return $this->hasMany(Kunjungan::class);
     }
+
+    public function antrians()
+    {
+        return $this->hasMany(Antrian::class);
+    }
 }

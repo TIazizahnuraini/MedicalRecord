@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use App\Models\Poli;
 
 class CreatePolisTable extends Migration
 {
@@ -20,6 +21,13 @@ class CreatePolisTable extends Migration
             $table->string('jadwal_selesai');
             $table->timestamps();
         });
+
+        Poli::create([
+            'nama_poli' => 'Poli Umum',
+            'jadwal_mulai' => '08.00',
+            'jadwal_selesai' => '11.00',
+
+        ]);
     }
 
     /**

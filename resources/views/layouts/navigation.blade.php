@@ -131,6 +131,15 @@
                             </a>
                         </li>
                         @endif
+
+                        @if (auth()->user()->role == "admin")
+                        <li>
+                            <a href="{{ route('periksa') }}" class="{{ request()->is('periksa') ? ' mm-active' : '' }}">
+                                <i class="metismenu-icon pe-7s-server"></i>
+                                Periksa
+                            </a>
+                        </li>
+                        @endif
                         
                         @if (auth()->user()->role == "admin")
                         <li>
