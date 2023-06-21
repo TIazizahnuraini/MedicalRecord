@@ -49,7 +49,7 @@
                                     @foreach ($antrians as $antrian)
                                         <tr>
                                             <th class="text-center" scope="row">{{ $no++ }}.</th>
-                                            <td>{{ $antrian->pasien->nama_pasien }}</td>
+                                            <td>{{ $antrian->user->name }}</td>
                                             <td>{{ $antrian->poli->nama_poli }}</td>
                                             <td>{{ $antrian->tanggal }}</td>
                                             <td>{{ $antrian->dokter->nama_dokter }}</td>

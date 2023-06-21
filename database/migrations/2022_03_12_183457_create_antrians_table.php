@@ -25,16 +25,18 @@ class CreateAntriansTable extends Migration
             $table->timestamps();
 
             $table->foreign('poli_id')->references('id')->on('polis')->onDelete('cascade');
+            $table->foreign('pasien_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('dokter_id')->references('id')->on('dokters')->onDelete('cascade');
         });
 
-        Antrian::create([
-            'nomor_antrian' => '1',
-            'status' => 'Belum dilayani',
-            'tanggal' => '2023-06-08',
-            'poli_id' => '1',
-            'pasien_id' => '1',
-            'dokter_id' => '1',
-        ]);
+        // Antrian::create([
+        //     'nomor_antrian' => '1',
+        //     'status' => 'Belum dilayani',
+        //     'tanggal' => '2023-06-09',
+        //     'poli_id' => '1',
+        //     'pasien_id' => '1',
+        //     'dokter_id' => '1',
+        // ]);
     }
 
     /**

@@ -14,11 +14,16 @@ class PoliSeeder extends Seeder
      */
     public function run()
     {
-        $polis = collect(["Poli Umum", "Poli Gigi"]);
+        $polis = collect([
+            ["Poli Umum", "08.00", "13.00"], 
+            ["Poli Gigi", "08.00", "13.00"]
+        ]);
 
-        $poli = $polis->each(function ($poli) {
+        $poli = $polis->eachSpread(function ($nama_poli, $jadwal_mulai, $jadwal_selesai) {
             Poli::create([
-                'nama_poli' => $poli
+                'nama_poli'      => $nama_poli,
+                'jadwal_mulai'   => $jadwal_mulai,
+                'jadwal_selesai' => $jadwal_selesai
             ]);
         });
     }

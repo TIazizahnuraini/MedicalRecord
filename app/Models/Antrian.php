@@ -9,6 +9,8 @@ class Antrian extends Model
 {
     use HasFactory;
 
+    protected $table = 'antrians';
+
     protected $fillable = ['poli_id', 'pasien_id', 'dokter_id', 'status', 'tanggal', 'nomor_antrian'];
 
     public function poli()
@@ -21,8 +23,8 @@ class Antrian extends Model
         return $this->belongsTo(Dokter::class);
     }
 
-    public function pasien()
+    public function user()
     {
-        return $this->belongsTo(Pasien::class);
+        return $this->belongsTo(User::class,'pasien_id');
     }
 }

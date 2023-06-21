@@ -10,6 +10,10 @@ class Pasien extends Model
     use HasFactory;
 
     protected $fillable = [
-        'nama_pasien', 'tempat_lahir', 'tgl_lahir', 'jenis_kelamin', 'alamat', 'jenis_registrasi', 'no_bpjs', 'no_hp', 'tgl_registrasi', 'agama', 'pekerjaan'
+        'user_id', 'jenis_kelamin', 'alamat', 'jenis_registrasi', 'no_bpjs', 'no_hp', 'tgl_registrasi', 'agama', 'pekerjaan'
     ];
+
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
 }

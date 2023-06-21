@@ -14,11 +14,13 @@ class UserRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => ['required'],
+            'name' => ['required', 'string', 'min:3', 'max:100'],
             'email' => ['required'],
             'username' => ['required'],
             'password' => ['required'],
             'role' => ['required'],
+            'tempat_lahir'      => ['required', 'string', 'min:3', 'max:50'],
+            'tgl_lahir'         => ['required', 'date'],
         ];
     }
 }

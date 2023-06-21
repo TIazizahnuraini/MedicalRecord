@@ -23,6 +23,8 @@ class User extends Authenticatable
         'username',
         'password',
         'role',
+        'tempat_lahir',
+        'tgl_lahir'
     ];
 
     /**
@@ -46,11 +48,15 @@ class User extends Authenticatable
 
     public function kunjungans()
     {
-        return $this->hasMany(Kunjungan::class);
+        return $this->hasMany(Kunjungan::class, 'pasien_id');
     }
 
     public function detailData($id)
     {
         return DB::table('users')->where('id', $id)-> first();
+    }
+
+    public function pasien(){
+        return $this->hasOne(Pasien::class);
     }
 }

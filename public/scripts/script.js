@@ -24,8 +24,8 @@ $(document).ready(function () {
                     if (res.length) {
                         result = $.map(res, function (obj) {
                             return {
-                                label: obj.nama_pasien,
-                                value: obj.nama_pasien,
+                                label: obj.name,
+                                value: obj.name,
                                 data: obj,
                             };
                         });
@@ -42,8 +42,8 @@ $(document).ready(function () {
                 var data = selectedData.item.data;
 
                 $("#pasien_id").val(data.id);
-                $("#jenis_registrasi").val(data.jenis_registrasi);
-                $("#no_bpjs").val(data.no_bpjs);
+                // $("#jenis_registrasi").val(data.jenis_registrasi);
+                // $("#no_bpjs").val(data.no_bpjs);
             }
         },
     });
@@ -137,6 +137,58 @@ $(document).ready(function () {
             }
         },
     });
+
+    var i = 0;
+
+    for(i=0; i <100; i++){
+        $("#nama_obat["+i+"]").autocomplete({
+            source: function (request, cb) {
+                $.ajax({
+                    url: basePath + "/obat/get-obat/" + request.term,
+                    method: "GET",
+                    dataType: "json",
+                    success: function (res) {
+                        var result;
+                        result = [
+                            {
+                                label:
+                                    "obat dengan nama " +
+                                    request.term +
+                                    " tidak ada!",
+                                value: "",
+                            },
+                        ];
+    
+                        // console.log(res);
+    
+                        if (res.length) {
+                            result = $.map(res, function (obj) {
+                                return {
+                                    label: obj.nama_ ,
+                                    value: obj.nama_obat,
+                                    data: obj,
+                                };
+                            });
+                        }
+                        cb(result);
+                    },
+                });
+            },
+    
+            select: function (e, selectedData) {
+                // console.log(selectedData);
+    
+                if (selectedData && selectedData.item && selectedData.item.data) {
+                    var data = selectedData.item.data;
+                    var i = 0;
+    
+                    $("#obat_id["+i+"]").val(data.id);
+                }
+            },
+        });
+    }
+
+    
 });
 
 $(document).ready(function () {
@@ -286,3 +338,25 @@ $(".destroy-antrian").on("click", function (e) {
         }
     });
 });
+
+// tambah table obat
+var i = 0;
+
+    $('#add').click(function(){
+        ++i;
+        $('#table').append(
+            `<tr>
+                <td>
+                <input type="text" name="nama_obat[`+i+`]" id="nama_obat[`+i+`]" class="form-control">
+                <input type="hidden" name="obat_id[`+i+`]">
+                </td>
+                <td>
+                    <input type="number" name="jumlah_obat[`+i+`]" id="" class="form-control">
+                </td>
+                <td>
+                    <button type="button" name="add" id="add" class="btn btn-danger">Hapus obat</button>
+                </td>
+            </tr>
+            `
+        );
+    });

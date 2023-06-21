@@ -22,12 +22,12 @@ class CreatePolisTable extends Migration
             $table->timestamps();
         });
 
-        Poli::create([
-            'nama_poli' => 'Poli Umum',
-            'jadwal_mulai' => '08.00',
-            'jadwal_selesai' => '11.00',
+        // Poli::create([
+        //     'nama_poli' => 'Poli Umum',
+        //     'jadwal_mulai' => '08.00',
+        //     'jadwal_selesai' => '11.00',
 
-        ]);
+        // ]);
     }
 
     /**

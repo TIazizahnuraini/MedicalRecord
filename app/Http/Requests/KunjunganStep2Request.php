@@ -28,7 +28,7 @@ class KunjunganStep2Request extends FormRequest
             'tekanan_darah' => ['required'],
             'respiratory_rake' => ['required'],
             'heart_rafe' => ['required'],
-            'id' =>['required'],
+            // 'id' =>['required'],
         ];
     }
 }

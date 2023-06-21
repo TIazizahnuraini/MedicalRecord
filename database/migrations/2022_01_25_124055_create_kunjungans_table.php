@@ -15,11 +15,11 @@ class CreateKunjungansTable extends Migration
     {
         Schema::create('kunjungans', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('poli_id');
-            $table->foreignId('pasien_id');
-            $table->foreignId('dokter_id');
-            $table->foreignId('user_id');
-            $table->foreignId('diagnosa_id');
+            $table->foreignId('poli_id')->nullable()->constrained('polis')->nullOnDelete();
+            $table->foreignId('pasien_id')->constrained('users')->cascadeOnDelete();
+            $table->foreignId('dokter_id')->nullable()->constrained('dokters')->nullOnDelete();
+            // $table->foreignId('user_id');
+            $table->foreignId('diagnosa_id')->nullable()->constrained('diagnosas')->nullOnDelete();
             $table->date('tgl_kunjungan');
             $table->enum('jenis_kunjungan', ['Kunjungan sakit', 'Kunjungan sehat']);
             $table->enum('tindak_lanjut', ['Pulang sehat', 'Rawat jalan', 'Pemeriksaan berkala', 'Rujukan']);
@@ -34,7 +34,7 @@ class CreateKunjungansTable extends Migration
             $table->text('keterangan')->nullable();
             $table->text('resep')->nullable();
             $table->integer('biaya')->nullable();
-            $table->json('nama_obat')->nullable();
+            // $table->json('nama_obat')->nullable();
             $table->enum('status', ['Belum dilayani', 'Sudah dilayani']);
             $table->timestamps();
         });

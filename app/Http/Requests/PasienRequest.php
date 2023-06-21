@@ -23,9 +23,7 @@ class PasienRequest extends FormRequest
     public function rules()
     {
         return [
-            'nama_pasien'       => ['required', 'string', 'min:3', 'max:100'],
-            'tempat_lahir'      => ['required', 'string', 'min:3', 'max:50'],
-            'tgl_lahir'         => ['required', 'date'],
+            'user_id'           => ['required'],
             'jenis_kelamin'     => ['required', 'string'],
             'alamat'            => ['required', 'string', 'min:3'],
             'jenis_registrasi'  => ['required', 'string'],

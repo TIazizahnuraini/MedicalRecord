@@ -61,4 +61,14 @@ class ObatController extends Controller
         session()->flash('success', 'Data obat berhasil dihapus');
         return redirect('obat');
     }
+
+    public function getObat($nama_obat){
+        if (empty($nama_obat)) {
+            return [];
+        }
+
+        $obat = Obat::where('nama_obat', 'LIKE', "%$nama_obat%")->get();
+
+        return $obat;
+    }
 }

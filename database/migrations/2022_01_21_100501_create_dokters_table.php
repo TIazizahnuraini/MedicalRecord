@@ -28,18 +28,18 @@ class CreateDoktersTable extends Migration
             $table->timestamps();
         });
 
-        Dokter::create([
-            'nama_dokter' => 'Anang Gunawan, TS',
-            'jenis_kelamin' => 'Laki-laki',
-            'spesialis' => 'Poli Umum',
-            'tempat_lahir' => 'Mojokerto',
-            'tgl_lahir' => '2023-06-07',
-            'alamat' => 'Mojokerto',
-            'nik' => '979729816708',
-            'sip' => '893724920',
-            'no_hp' => '085748110282'
+        // Dokter::create([
+        //     'nama_dokter' => 'Anang Gunawan, TS',
+        //     'jenis_kelamin' => 'Laki-laki',
+        //     'spesialis' => 'Poli Umum',
+        //     'tempat_lahir' => 'Mojokerto',
+        //     'tgl_lahir' => '2023-06-07',
+        //     'alamat' => 'Mojokerto',
+        //     'nik' => '979729816708',
+        //     'sip' => '893724920',
+        //     'no_hp' => '085748110282'
             
-        ]);
+        // ]);
     }
 
     /**

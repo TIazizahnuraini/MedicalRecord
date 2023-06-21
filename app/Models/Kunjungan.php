@@ -9,7 +9,7 @@ class Kunjungan extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['poli_id', 'pasien_id', 'dokter_id', 'user_id', 'tgl_kunjungan', 'jenis_kunjungan', 'tindak_lanjut', 'keluhan', 'terapi', 'kesadaran', 'tb', 'bb', 'tekanan_darah', 'respiratory_rake', 'heart_rafe', 'keterangan', 'nama_obat','biaya', 'status', 'resep','diagnosa_id'];
+    protected $fillable = ['poli_id', 'pasien_id', 'dokter_id', 'tgl_kunjungan', 'jenis_kunjungan', 'tindak_lanjut', 'keluhan', 'terapi', 'kesadaran', 'tb', 'bb', 'tekanan_darah', 'respiratory_rake', 'heart_rafe', 'keterangan','biaya', 'status', 'resep','diagnosa_id'];
 
     public function poli()
     {
@@ -39,4 +39,12 @@ class Kunjungan extends Model
     // protected $casts = [
     //     'nama_obat' => 'array'
     // ];
+
+    public function obats(){
+        return $this->belongsToMany(Obat::class);
+    }
+
+    public function user(){
+        return $this->belongsTo(User::class, 'pasien_id');
+    }
 }

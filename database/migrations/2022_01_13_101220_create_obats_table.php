@@ -24,15 +24,13 @@ class CreateObatsTable extends Migration
             $table->timestamps();
         });
 
-        Obat::create([
-            'nama_obat' => 'Paracetamol',
-            'jumlah' => '34',
-            'satuan' => 'tablet',
-            'dosis' => '50mg',
-            'expired' => '2024-07-10',
-
-
-        ]);
+        // Obat::create([
+        //     'nama_obat' => 'Paracetamol',
+        //     'jumlah' => '34',
+        //     'satuan' => 'tablet',
+        //     'dosis' => '50mg',
+        //     'expired' => '2024-07-10',
+        // ]);
     }
 
     /**

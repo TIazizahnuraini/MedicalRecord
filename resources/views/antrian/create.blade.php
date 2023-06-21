@@ -19,6 +19,16 @@
             </div>
         </div>
 
+        @if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+
         <div class="row">
             <div class="col-md-6 col-xl-12">
                 <div class="mb-3 card">
@@ -31,6 +41,24 @@
 
                             <div class="form-row">
 
+                                @if (Auth::user()->role == 'pasien')
+                                <div class="col-md-6 mb-3">
+                                    <label for="nama_pasien">Nama Pasien</label>
+                                    <input type="text" disabled name="nama_pasien"
+                                        class="form-control @error('nama_pasien') is-invalid @enderror" id="nama_pasien"
+                                        value="{{ Auth::user()->name }}">
+
+                                    @error('nama_pasien')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+
+                                <input type="hidden" name="pasien_id" id="pasien_id" value="{{ Auth::user()->id }}">
+                                    
+                                @else
+                                
                                 <div class="col-md-6 mb-3">
                                     <label for="nama_pasien">Nama Pasien</label>
                                     <input type="text" name="nama_pasien"
@@ -43,8 +71,10 @@
                                         </span>
                                     @enderror
                                 </div>
-
                                 <input type="hidden" name="pasien_id" id="pasien_id" value="{{ old('pasien_id') }}">
+                                @endif
+
+
 
                                 <div class="col-md-6 mb-3">
                                     <label for="nama_dokter">Dokter</label>
@@ -107,7 +137,7 @@
                                 </div>
 
                             </div>
-
+                            {{-- <input type="submit" value="Tambah"> --}}
                             <button type="submit" class="btn btn-primary mt-2">
                                 <i class="fas fa-user-plus"></i> Tambah
                             </button>

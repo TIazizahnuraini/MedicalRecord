@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Requests;
-use App\Http\Requests\AntrianRequest;
+// use App\Http\Requests\AntrianRequest;
 use Illuminate\Foundation\Http\FormRequest;
 class AntrianRequest extends FormRequest
 {
@@ -23,12 +23,13 @@ class AntrianRequest extends FormRequest
     public function rules()
     {
         return [
-            'nama_pasien' => ['required'],
+            // 'nama_pasien' => ['required'],
+            //'nomor_pasien' => ['required'],
             'tanggal' => ['required'],
             'status' => ['required'],
             'poli' => ['required'],
-            'nama_pasien' => ['required'],
-            'pasien_id' => ['required'],
+            // 'nama_pasien' => ['required'],
+            // 'pasien_id' => ['required'],
             'nama_dokter' => ['required'],
             'dokter_id' => ['required'],
         ];

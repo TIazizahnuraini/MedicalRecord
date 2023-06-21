@@ -181,7 +181,7 @@
                             </div>
 
                             <div class="d-flex justify-content-center">
-                                <input type ="hidden" name="id" value="{{ $id }}">
+                                {{-- <input type ="hidden" name="id" value="{{ $id }}"> --}}
                                 <button type="submit" class="btn btn-primary mt-3">
                                     Selanjutnya <i class="fas fa-arrow-right"></i>
                                 </button>

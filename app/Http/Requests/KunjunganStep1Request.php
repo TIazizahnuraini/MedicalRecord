@@ -30,7 +30,7 @@ class KunjunganStep1Request extends FormRequest
             'tindak_lanjut' => ['required'],
             'keluhan' => ['required'],
             'terapi' => ['required'],
-            'nama_dokter' => ['required'],
+            // 'nama_dokter' => ['required'],
             'dokter_id' => ['required'],
             'keterangan' => ['required'],
         ];

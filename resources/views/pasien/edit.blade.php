@@ -31,7 +31,7 @@
 
                             <div class="form-row">
 
-                                <div class="col-md-12 mb-3">
+                                {{-- <div class="col-md-12 mb-3">
                                     <label for="nama_pasien">Nama Pasien</label>
                                     <input type="text" name="nama_pasien"
                                         class="form-control @error('nama_pasien') is-invalid @enderror" id="nama_pasien"
@@ -68,7 +68,7 @@
                                             <strong>{{ $message }}</strong>
                                         </span>
                                     @enderror
-                                </div>
+                                </div> --}}
 
                                 <div class="col-md-6 mb-3">
                                     <label for="jenis_kelamin">Jenis Kelamin</label>

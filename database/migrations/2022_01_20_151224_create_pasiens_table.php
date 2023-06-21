@@ -16,9 +16,10 @@ class CreatePasiensTable extends Migration
     {
         Schema::create('pasiens', function (Blueprint $table) {
             $table->id();
-            $table->string('nama_pasien', 100);
-            $table->string('tempat_lahir', 50);
-            $table->date('tgl_lahir');
+            // $table->string('nama_pasien', 100);
+            // $table->string('tempat_lahir', 50);
+            // $table->date('tgl_lahir');
+            $table->foreignId('user_id')->constrained('users');
             $table->enum('jenis_kelamin', ['Laki-laki', 'Perempuan']);
             $table->text('alamat'); 
             $table->enum('jenis_registrasi', ['Umum', 'BPJS']);
@@ -30,19 +31,19 @@ class CreatePasiensTable extends Migration
             $table->timestamps();
         });
 
-        Pasien::create([
-            'nama_pasien' => 'Susi',
-            'tempat_lahir' => 'Mojokerto',
-            'tgl_lahir' => '2023-06-07',
-            'jenis_kelamnin' => 'perempuan',
-            'alamat' => 'Mojokerto',
-            'jenis_registrasi' => 'BPJS',
-            'no_bpjs' => '874826418301',
-            'no_hp' => '0856768000000',
-            'tgl_registrasi' => '2023-06-03',
-            'agama' => 'Islam',
-            'pekerjaan' => 'Pelajar/Mahasiswa'
-        ]);
+        // Pasien::create([
+        //     'nama_pasien' => 'Susi',
+        //     'tempat_lahir' => 'Mojokerto',
+        //     'tgl_lahir' => '2023-06-07',
+        //     'jenis_kelamnin' => 'perempuan',
+        //     'alamat' => 'Mojokerto',
+        //     'jenis_registrasi' => 'BPJS',
+        //     'no_bpjs' => '874826418301',
+        //     'no_hp' => '0856768000000',
+        //     'tgl_registrasi' => '2023-06-03',
+        //     'agama' => 'Islam',
+        //     'pekerjaan' => 'Pelajar/Mahasiswa'
+        // ]);
     }
 
     /**

@@ -53,11 +53,18 @@
                                             <td>{{ $poli->jadwal_selesai }}</td>
 
                                             <td class="text-center">
-                                                <form action="{{ route('poli.destroy', $poli->id) }}" method="post">
+                                                <a href="{{route('periksa.show', $poli->id)}}" class="btn btn-primary mb-2">
+                                                    <i class="fas fa-info"></i> 
+                                                </a>
+                                                {{-- <form action="{{ route('poli.destroy', $poli->id) }}" method="post">
 
-                                                     <a href="{{ route('periksa.pasien', [$poli->nama_poli, $antrian[$poli->nama_poli]]) }}" class="btn btn-primary mb-2">
-                                                        <i class="fas fa-plus"></i> 
-                                                     </a>
+                                                    @if($antrian[$poli->nama_poli] != 0)
+                                                        <a href="{{ route('kunjungan.create.step1', [ str_replace(" ","+",$poli->nama_poli), $antrian[$poli->nama_poli]]) }}" class="btn btn-primary mb-2">
+                                                            <i class="fas fa-info"></i> 
+                                                        </a>
+                                                    @else
+                                                        <span>Tidak Ada Antrian</span>
+                                                    @endif
 
                                                     {{-- <a href="{{ route('poli.update', $poli->id) }}"
                                                         class="btn btn-success btn-sm">
@@ -69,8 +76,8 @@
 
                                                     <button type="submit" class="btn btn-danger btn-sm destroy-poli">
                                                         <i class="fas fa-trash"></i> Hapus
-                                                    </button> --}}
-                                                </form>
+                                                    </button> --}
+                                                </form> --}}
 
                                             </td>
                                         </tr>

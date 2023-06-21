@@ -1,9 +1,8 @@
 <?php
 
-use App\Http\Controllers\{DiagnosaController, DokterController, HomeController, KunjunganController, ObatController, PasienController, PoliController, AntrianController, LaporanmedisController, UserController, PeriksaController};
+use App\Http\Controllers\{DiagnosaController, DokterController, HomeController, KunjunganController, ObatController, PasienController, PoliController, AntrianController, LaporanDokterController, LaporanmedisController, LaporanObatController, LaporanPasienController, UserController, PeriksaController};
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-
 
 #Authenticate Login
 Route::group(['middleware' => ['auth']], function () {
@@ -59,6 +58,7 @@ Route::group(['middleware' => ['auth']], function () {
     // obat
     Route::prefix('obat')->middleware(['checkRole:admin,apoteker'])->group(function(){
         Route::get('/', [ObatController::class, 'index'])->name('obat');
+        Route::get('/get-obat/{obat:nama_obat}', [ObatController::class, 'getObat']);
         Route::get('/create', [ObatController::class, 'create'])->name('obat.create');
         Route::post('/store', [ObatController::class, 'store'])->name('obat.store');
         Route::get('/{obat}/update', [ObatController::class, 'update'])->name('obat.update');
@@ -81,7 +81,7 @@ Route::group(['middleware' => ['auth']], function () {
     // Kunjungan
     Route::prefix('kunjungan')->middleware(['checkRole:admin'])->group(function(){
         Route::get('/', [KunjunganController::class, 'index'])->name('kunjungan');
-        Route::get('/create/step1', [KunjunganController::class, 'createStep1'])->name('kunjungan.create.step1');
+        Route::get('/create/step1/{antrian}', [KunjunganController::class, 'createStep1'])->name('kunjungan.create.step1');
         Route::post('/step1', [KunjunganController::class, 'step1'])->name('kunjungan.step1');
 
         Route::get('/create/step2', [KunjunganController::class, 'createStep2'])->name('kunjungan.create.step2');
@@ -89,6 +89,8 @@ Route::group(['middleware' => ['auth']], function () {
 
         Route::get('/create/step3', [KunjunganController::class, 'createStep3'])->name('kunjungan.create.step3');
         Route::put('/step3', [KunjunganController::class, 'step3'])->name('kunjungan.step3');
+        Route::post('/tambah-obat', [KunjunganController::class, 'tambahObat'])->name('kunjungan.tambahObat');
+        Route::delete('/hapus-obat/{obatPasien}', [KunjunganController::class, 'deleteObat'])->name('kunjungan.hapusObat');
 
         // Route::get('/create/step4', [KunjunganController::class, 'createStep4'])->name('kunjungan.create.step4');
         // Route::put('/step4', [KunjunganController::class, 'step4'])->name('kunjungan.step4');
@@ -98,19 +100,50 @@ Route::group(['middleware' => ['auth']], function () {
     });
     
     // Laporan Pasien
-    Route::prefix('laporan')->middleware(['checkRole:admin, kepala_klinik'])->group(function(){
+    Route::prefix('laporan-pasien')->middleware(['checkRole:admin,kepala_klinik'])->group(function(){
         Route::get('/get-pasien/{pasien:nama_pasien}', [LaporanmedisController::class, 'getPasien']);
-        Route::get('/', [LaporanmedisController::class, 'laporanpasien'])->name('laporan');
+        Route::get('/', [LaporanPasienController::class, 'index'])->name('laporan-pasien');
+        Route::get('/cetak', [LaporanPasienController::class, 'cetakPdf'])->name('laporan-pasien.cetak');
+        Route::get('/cetak/{user}', [LaporanPasienController::class, 'cetakPdfPasien'])->name('laporan-pasien.cetak-perPasien');
 
         Route::get('/{pasien}/cetak_pdf', [LaporanmedisController::class, 'cetak'])->name('pasien.cetak');
         // Route::delete('/{pasien}/destroy', [LaporanmedisController::class, 'destroy'])->name('pasien.destroy');
     });
 
-    // Laporan Medis
-    Route::prefix('laporanmedis')->middleware(['checkRole:admin, kepala_klinik'])->group(function(){
-        //Route::get('/', [LaporanmedisController::class, 'laporanpasien'])->name('laporan');
+    // Laporan Obat
+    Route::prefix('laporan-obat')->middleware(['checkRole:admin,kepala_klinik,apoteker'])->group(function(){
+        // Route::get('/get-pasien/{pasien:nama_pasien}', [LaporanmedisController::class, 'getPasien']);
+        Route::get('/', [LaporanObatController::class, 'index'])->name('laporan-obat');
+        Route::get('/cetak', [LaporanObatController::class, 'cetakPdf'])->name('laporan-obat.cetak');
+        // Route::get('/cetak/{user}', [LaporanPasienController::class, 'cetakPdfPasien'])->name('laporan-pasien.cetak-perPasien');
+
         // Route::get('/{pasien}/cetak_pdf', [LaporanmedisController::class, 'cetak'])->name('pasien.cetak');
         // Route::delete('/{pasien}/destroy', [LaporanmedisController::class, 'destroy'])->name('pasien.destroy');
+    });
+
+    // Laporan Dokter
+    Route::prefix('laporan-dokter')->middleware(['checkRole:admin,kepala_klinik'])->group(function(){
+        // Route::get('/get-pasien/{pasien:nama_pasien}', [LaporanmedisController::class, 'getPasien']);
+        Route::get('/', [LaporanDokterController::class, 'index'])->name('laporan-dokter');
+        Route::get('/cetak', [LaporanDokterController::class, 'cetakPdf'])->name('laporan-dokter.cetak');
+        // Route::get('/cetak/{user}', [LaporanPasienController::class, 'cetakPdfPasien'])->name('laporan-pasien.cetak-perPasien');
+
+        // Route::get('/{pasien}/cetak_pdf', [LaporanmedisController::class, 'cetak'])->name('pasien.cetak');
+        // Route::delete('/{pasien}/destroy', [LaporanmedisController::class, 'destroy'])->name('pasien.destroy');
+    });
+
+    // Laporan Medis
+    Route::prefix('laporan-medis')->middleware(['checkRole:admin,kepala_klinik,pasien'])->group(function(){
+        Route::get('/', [LaporanmedisController::class, 'index'])->name('laporan-medis');
+        Route::get('/{user}', [LaporanmedisController::class, 'show'])->name('laporan-medis.show');
+        Route::get('/cetak/{kunjungan}', [LaporanmedisController::class, 'cetakPdf'])->name('laporan-medis.cetak');
+        // Route::get('/{pasien}/cetak_pdf', [LaporanmedisController::class, 'cetak'])->name('pasien.cetak');
+        // Route::delete('/{pasien}/destroy', [LaporanmedisController::class, 'destroy'])->name('pasien.destroy');
+    });
+
+    Route::prefix('document')->middleware(['checkRole:admin,pasien'])->group(function(){
+        Route::get('/{user}', [LaporanmedisController::class, 'show'])->name('document.show');
+        Route::get('/cetak/{kunjungan}', [LaporanmedisController::class, 'cetakPdf'])->name('document.cetak');
     });
 
     // user
@@ -123,15 +156,17 @@ Route::group(['middleware' => ['auth']], function () {
     // periksa
     Route::prefix('periksa')->middleware(['checkRole:admin'])->group(function(){
         Route::get('/', [PeriksaController::class, 'index'])->name('periksa');
-        Route::get('/{poli}/{antrian}', [PeriksaController::class, 'index'])->name('periksa.pasien');
-        Route::get('/create/step1', [PeriksaController::class, 'createStep1'])->name('periksa.create.step1');
-        Route::post('/step1', [PeriksaController::class, 'step1'])->name('periksa.step1');
+        Route::get('/{poli}', [PeriksaController::class, 'show'])->name('periksa.show');
+        // Route::get('/{poli}/{antrian}', [PeriksaController::class, 'index'])->name('periksa.pasien');
 
-        Route::get('/create/step2', [PeriksaController::class, 'createStep2'])->name('periksa.create.step2');
-        Route::post('/step2', [PeriksaController::class, 'step2'])->name('periksa.step2');
+        // Route::get('/create/step1', [PeriksaController::class, 'createStep1'])->name('periksa.create.step1');
+        // Route::post('/step1', [PeriksaController::class, 'step1'])->name('kperiksa.step1');
 
-        Route::get('/create/step3', [PeriksaController::class, 'createStep3'])->name('periksa.create.step3');
-        Route::post('/step3', [PeriksaController::class, 'step3'])->name('periksa.step3');
+        // Route::get('/create/step2', [PeriksaController::class, 'createStep2'])->name('periksa.create.step2');
+        // Route::put('/step2', [PeriksaController::class, 'step2'])->name('periksa.step2');
+
+        // Route::get('/create/step3', [PeriksaController::class, 'createStep3'])->name('periksa.create.step3');
+        // Route::put('/step3', [PeriksaController::class, 'step3'])->name('periksa.step3');
 
     });
 

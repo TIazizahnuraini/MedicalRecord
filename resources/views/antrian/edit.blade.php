@@ -25,7 +25,7 @@
                     <div class="card-body">
                         <h5 class="card-title mb-3">Edit Antrian</h5>
                         
-                        <form action="{{ route('antrian.edit', $antrian->id) }}" method="post" class="needs-validation">
+                        <form action="{{ route('antrian.edit', $antrian->user->id) }}" method="post" class="needs-validation">
                         
                         {{-- <form action="{{ route('antrian.edit', $antrian->id) }}" method="post" class="needs-validation mt-4"
                         id="bash_path"> --}}
@@ -39,7 +39,7 @@
                                     <label for="nama_pasien">Nama Pasien</label>
                                     <input type="text" name="nama_pasien"
                                         class="form-control @error('nama_pasien') is-invalid @enderror" id="nama_pasien"
-                                        value="{{ old('nama_pasien') ?? $antrian->pasien->nama_pasien}}">
+                                        value="{{ old('nama_pasien') ?? $antrian->user->name}}">
 
                                     @error('nama_pasien')
                                         <span class="invalid-feedback" role="alert">

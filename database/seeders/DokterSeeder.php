@@ -26,7 +26,7 @@ class DokterSeeder extends Seeder
             ["Putra, SKM", "Laki-laki", "Poli Umum", "Jepara", date('1985-12-18'), "Jepara", "332972847582", "088975400", "089564738473"],
         ]);
 
-        $dokter = $dokters->eachSpread(function ($nama_dokter, $jenis_kelamin, $spesialis, $tempat_lahir, $tgl_lahir, $alamat, $nik, $no_hp) {
+        $dokter = $dokters->eachSpread(function ($nama_dokter, $jenis_kelamin, $spesialis, $tempat_lahir, $tgl_lahir, $alamat, $nik, $sip, $no_hp) {
             Dokter::create([
                 'nama_dokter' => $nama_dokter,
                 'jenis_kelamin' => $jenis_kelamin,

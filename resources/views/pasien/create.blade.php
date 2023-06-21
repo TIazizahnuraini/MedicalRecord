@@ -18,6 +18,16 @@
                 </div>
             </div>
         </div>
+{{-- 
+        @if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif --}}
 
         <div class="row">
             <div class="col-md-6 col-xl-12">
@@ -30,44 +40,7 @@
 
                             <div class="form-row">
 
-                                <div class="col-md-12 mb-3">
-                                    <label for="nama_pasien">Nama Pasien</label>
-                                    <input type="text" name="nama_pasien"
-                                        class="form-control @error('nama_pasien') is-invalid @enderror" id="nama_pasien"
-                                        value="{{ old('nama_pasien') }}">
-
-                                    @error('nama_pasien')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
-
-                                <div class="col-md-6 mb-3">
-                                    <label for="tempat_lahir">Tempat Lahir</label>
-                                    <input type="text" name="tempat_lahir"
-                                        class="form-control @error('tempat_lahir') is-invalid @enderror" id="tempat_lahir"
-                                        value="{{ old('tempat_lahir') }}">
-
-                                    @error('tempat_lahir')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
-
-                                <div class="col-md-6 mb-3">
-                                    <label for="tgl_lahir">Tanggal Lahir</label>
-                                    <input type="date" name="tgl_lahir"
-                                        class="form-control @error('tgl_lahir') is-invalid @enderror" id="tgl_lahir"
-                                        value="{{ old('tgl_lahir') }}">
-
-                                    @error('tgl_lahir')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
+                                <input type="hidden" name="user_id" value="{{Auth::id()}}">
 
                                 <div class="col-md-6 mb-3">
                                     <label for="jenis_kelamin">Jenis Kelamin</label>

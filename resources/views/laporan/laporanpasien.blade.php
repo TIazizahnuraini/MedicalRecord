@@ -28,6 +28,8 @@
                 {{-- <a href="/cetak" class="btn btn-primary">Export Data</a>
                 <table class="table"> --}}
 
+                <a href="{{route('')}}"></a>
+
                 <div class="main-card mb-3 card">
                     <div class="card-body">
 
@@ -51,7 +53,7 @@
                                     @foreach ($pasiens as $pasien)
                                         <tr>
                                             <th class="text-center" scope="row">{{ $no++ }}.</th>
-                                            <td>{{ $pasien->nama_pasien }}</td>
+                                            <td>{{ $pasien->user->name }}</td>
                                             <td>{{ $pasien->jenis_kelamin }}</td>
                                             <td>{{ $pasien->jenis_registrasi }}</td>
                                             <td>{{ $pasien->no_hp }}</td>

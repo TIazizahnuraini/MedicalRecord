@@ -10,9 +10,9 @@
                         <i class="pe-7s-plus icon-gradient bg-mean-fruit">
                         </i>
                     </div>
-                    <div>Tambah Data Periksa Pasien
+                    <div>Tambah Kunjungan Rekam Medis
                         <div class="page-title-subheading">
-                            Tambah periksa adalah halaman untuk menginputkan data pemeriksaan pasien.
+                            Tambah Kunjungan adalah halaman untuk menginputkan data kunjungan.
                         </div>
                     </div>
                 </div>

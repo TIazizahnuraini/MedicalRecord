@@ -6,6 +6,7 @@ use App\Models\Pasien;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Http\Requests\PasienRequest;
+use App\Models\User;
 
 class PasienController extends Controller
 {
@@ -22,6 +23,15 @@ class PasienController extends Controller
 
     public function create()
     {
+
+        // dd($user);
+
+        if(Pasien::where('user_id', Auth::user()->id)->exists()){
+            $pasien = Pasien::where('user_id', Auth::user()->id)->first();
+            // return $this->update($pasien);
+
+            return redirect(route('pasien.update', $pasien));
+        }
         return view('pasien.create');
     }
 
@@ -31,6 +41,9 @@ class PasienController extends Controller
         Pasien::create($attr);
 
         session()->flash('success', 'Data pasien berhasil ditambah');
+        if(Auth::user()->role== 'pasien'){
+            return redirect('/');
+        }
         return redirect('pasien');
     }
 
@@ -64,7 +77,10 @@ class PasienController extends Controller
             return [];
         }
 
-        $pasien = DB::table('pasiens')->where('nama_pasien', 'LIKE', "%$id%")->get();
+        $pasien = User::where('name', 'LIKE', "%$id%")->where('role', 'pasien')->get();
+
+        // dd($pasien);
+        // $pasien = DB::table('users')->where('name', 'LIKE', "%$id%")->where('role', 'pasien')->get();
         return $pasien;
     }
 }

@@ -23,7 +23,7 @@ class KunjunganStep3Request extends FormRequest
     {
         return [
             'diagnosa' => ['required'], 
-            'resep' => ['required'], 
+            // 'resep' => ['required'], 
             'status' => ['required'], 
             'biaya' => ['required'],
         ];

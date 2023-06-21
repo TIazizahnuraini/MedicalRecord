@@ -228,29 +228,25 @@
 
                         <li>
                             @if (auth()->user()->role == "kepala_klinik")
-                            <a href="laporanmedis"
-                                <?= @$_GET['page'] == 'laporanmedis' ? 'class="mm-active"' : '' ?>>
+                            <a href="{{ route('laporan-medis') }}" class="{{ request()->is('laporan-medis') ? ' mm-active' : '' }}">
                                 <i class="metismenu-icon"></i>Laporan Data Medis 
                             </a>
                             @endif
 
                             @if (auth()->user()->role == "admin")
-                            <a href="laporanmedis"
-                                <?= @$_GET['page'] == 'laporanmedis' ? 'class="mm-active"' : '' ?>>
+                            <a href="{{ route('laporan-medis') }}" class="{{ request()->is('laporan-medis') ? ' mm-active' : '' }}">
                                 <i class="metismenu-icon"></i>Laporan Data Medis 
                             </a>
                             @endif
 
                             @if (auth()->user()->role == "pasien")
-                            <a href="laporanmedis"
-                                <?= @$_GET['page'] == 'laporanmedis' ? 'class="mm-active"' : '' ?>>
+                            <a href="{{ route('document.show', Auth::user()->id)}}" class="{{ request()->is('laporan-medis') ? ' mm-active' : '' }}">
                                 <i class="metismenu-icon"></i>Laporan Data Medis 
                             </a>
                             @endif
 
                             @if (auth()->user()->role == "apoteker")
-                            <a href="laporanmedis"
-                                <?= @$_GET['page'] == 'laporanmedis' ? 'class="mm-active"' : '' ?>>
+                            <a href="{{ route('laporan-medis') }}" class="{{ request()->is('laporan-medis') ? ' mm-active' : '' }}">
                                 <i class="metismenu-icon"></i>Laporan Data Medis 
                             </a>
                             @endif
@@ -260,14 +256,29 @@
 
                         <li>
                             @if (auth()->user()->role == "admin")
-                            <a href="{{ route('laporan') }}" class="{{ request()->is('laporan') ? ' mm-active' : '' }}">
+                            <a href="{{ route('laporan-pasien') }}" class="{{ request()->is('laporan-pasien') ? ' mm-active' : '' }}">
                                 <i class="metismenu-icon"></i>Laporan Data Pasien
                             </a>
                             @endif
 
                             @if (auth()->user()->role == "kepala_klinik")
-                            <a href="{{ route('laporan') }}" class="{{ request()->is('laporan') ? ' mm-active' : '' }}">
+                            <a href="{{ route('laporan-pasien') }}" class="{{ request()->is('laporan-pasien') ? ' mm-active' : '' }}">
                                 <i class="metismenu-icon"></i>Laporan Data Pasien
+                            </a>
+                            @endif
+
+                        </li>
+
+                         <li>
+                            @if (auth()->user()->role == "admin")
+                            <a href="{{ route('laporan-dokter') }}" class="{{ request()->is('laporan-dokter') ? ' mm-active' : '' }}">
+                                <i class="metismenu-icon"></i>Laporan Data Dokter
+                            </a>
+                            @endif
+
+                            @if (auth()->user()->role == "kepala_klinik")
+                            <a href="{{ route('laporan-dokter') }}" class="{{ request()->is('laporan-dokter') ? ' mm-active' : '' }}">
+                                <i class="metismenu-icon"></i>Laporan Data Dokter
                             </a>
                             @endif
 
@@ -275,39 +286,24 @@
 
                         <li>
                             @if (auth()->user()->role == "admin")
-                            <a href="{{ route('laporan') }}" class="{{ request()->is('laporan') ? ' mm-active' : '' }}">
-                                <i class="metismenu-icon"></i>Laporan Data Dokter
-                            </a>
-                            @endif
-
-                            @if (auth()->user()->role == "kepala_klinik")
-                            <a href="{{ route('laporan') }}" class="{{ request()->is('laporan') ? ' mm-active' : '' }}">
-                                <i class="metismenu-icon"></i>Laporan Data Dokter
-                            </a>
-                            @endif
-
-                        </li>
-
-                        <li>
-                            @if (auth()->user()->role == "admin")
-                            <a href="{{ route('laporan') }}" class="{{ request()->is('laporan') ? ' mm-active' : '' }}">
+                            <a href="{{ route('laporan-obat') }}" class="{{ request()->is('laporan-obat') ? ' mm-active' : '' }}">
                                 <i class="metismenu-icon"></i>Laporan Data Obat
                             </a>
                             @endif
 
                             @if (auth()->user()->role == "kepala_klinik")
-                            <a href="{{ route('laporan') }}" class="{{ request()->is('laporan') ? ' mm-active' : '' }}">
+                            <a href="{{ route('laporan-obat') }}" class="{{ request()->is('laporan-obat') ? ' mm-active' : '' }}">
                                 <i class="metismenu-icon"></i>Laporan Data Obat
                             </a>
                             @endif
 
                             @if (auth()->user()->role == "apoteker")
-                            <a href="{{ route('laporan') }}" class="{{ request()->is('laporan') ? ' mm-active' : '' }}">
+                            <a href="{{ route('laporan-obat') }}" class="{{ request()->is('laporan-obat') ? ' mm-active' : '' }}">
                                 <i class="metismenu-icon"></i>Laporan Data Obat
                             </a>
                             @endif
 
-                        </li>
+                        </li> 
 
                     </ul>
                 </li>

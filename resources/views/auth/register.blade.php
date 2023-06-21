@@ -32,9 +32,9 @@
                                             <div class="col-md-12">
                                                 <div class="position-relative form-group">
                                                     <input id="name" type="text"
-                                                        class="form-control @error('name') is-invalid @enderror" name="name"
-                                                        placeholder="Nama Lengkap" value="{{ old('name') }}" autocomplete="name"
-                                                        autofocus>
+                                                        class="form-control @error('name') is-invalid @enderror"
+                                                        name="name" placeholder="Nama Lengkap"
+                                                        value="{{ old('name') }}" autocomplete="name" autofocus>
 
                                                     @error('name')
                                                         <span class="invalid-feedback" role="alert">
@@ -57,6 +57,30 @@
                                                         </span>
                                                     @enderror
                                                 </div>
+                                            </div>
+
+                                            <div class="col-md-12 mb-3">
+                                                <input type="text" name="tempat_lahir" placeholder="Tempat Lahir"
+                                                    class="form-control @error('tempat_lahir') is-invalid @enderror"
+                                                    id="tempat_lahir" value="{{ old('tempat_lahir') }}">
+
+                                                @error('tempat_lahir')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
+                                            </div>
+
+                                            <div class="col-md-12 mb-3">
+                                                <input type="date" name="tgl_lahir" placeholder="Tanggal Lahir"
+                                                    class="form-control @error('tgl_lahir') is-invalid @enderror"
+                                                    id="tgl_lahir" value="{{ old('tgl_lahir') }}">
+
+                                                @error('tgl_lahir')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
                                             </div>
 
                                             <div class="col-md-12">
@@ -92,8 +116,8 @@
                                             <div class="col-md-12">
                                                 <div class="position-relative form-group">
                                                     <input id="password-confirm" type="password" class="form-control"
-                                                        placeholder="Konfirmasi Password" name="password_confirmation" required
-                                                        autocomplete="new-password">
+                                                        placeholder="Konfirmasi Password" name="password_confirmation"
+                                                        required autocomplete="new-password">
                                                 </div>
                                             </div>
 
